@@ -1,0 +1,48 @@
+* {
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  }
+body{
+  padding: 2rem 2rem 6rem 6rem;
+
+
+}
+
+header {
+  background-image: url("images/header-image.jpg");
+  background-position: top left;
+  background-size:inherit;
+  background-repeat: no-repeat;
+  min-height: 15rem;
+  padding-top: 2rem 2rem 2rem 2rem;
+  color: #000;
+  font-size: larger;
+  font-weight: 600;
+}
+input {
+  width: 8rem;
+  border: 2px solid;
+  margin-bottom: 1rem;
+  }
+button {
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  background-color: #0072b1;
+  color: #fff;
+  font-weight: 600;
+}
+
+table {
+  padding: .5rem;
+}
+table,
+td {
+    border: 1px solid #333;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
+}
