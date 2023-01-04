@@ -3,11 +3,12 @@ let guessNum = Array.from(Array(10), () => new Array (3));
 console.log(guessNum);
 //input got moved from inside the checkAnswers() function - move back after 2d array is functional
 let input = new Array (4);  
-//results for single attempt moved from inside selection() function - move back after 2d array is functional
-let digitsGuessed = 0;
-let positionsGuessed = 0;
+// //results for single attempt moved from inside selection() function - move back after 2d array is functional
+// let digitsGuessed = 0;
+// let positionsGuessed = 0;
 //initiate array to hold the winning number set
 let secretNum = new Array (4);
+
 //obtain the winning number set from API
 fetch('https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new')
 .then ((response) => response.text())
@@ -19,7 +20,7 @@ fetch('https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=p
 });
 console.dir(`starter number set: ${JSON.stringify(secretNum)}`);
 
-//add a row to User Input Log table
+//adds a row to User Input Log table
 function addRow(tableID, rowIndex, userInput, digitsGuessed, positionsGuessed) {
     // Get a reference to the table
     let tableRef = document.getElementById(tableID);
@@ -37,58 +38,63 @@ function addRow(tableID, rowIndex, userInput, digitsGuessed, positionsGuessed) {
 //collects user input as part of one attempt
 function selection (input){
     input[0] = document.getElementById("1num").value;
-    console.log(`first num: ${input[0]}`);
+    console.log(`User's first num: ${input[0]}`);
  
     input[1] = document.getElementById("2num").value;
-    console.log(`second num: ${input[1]}`);  
+    console.log(`User's second num: ${input[1]}`);  
 
     input[2] = document.getElementById("3num").value;
-    console.log(`third num: ${input[2]}`);  
+    console.log(`User's third num: ${input[2]}`);  
 
     input[3] = document.getElementById("4num").value;
-    console.log(`fourth num: ${input[3]}`);
+    console.log(`User's fourth num: ${input[3]}`);
     return input;
 }
+
+let counter = 1;
 
 //checks user input against the API generated number set
 function checkAnswers(){
     // let input = new Array (4);  
+    //start the guess check loop
+    let button = document.getElementById("submit");
+    if (counter == 10) {
+        button.disabled = true;
+        alert("Last Try!")
+    }
     console.log(`starter user input array: ${input}`);
-   
+
+    let digitsGuessed = 0;
+    let positionsGuessed = 0;
     selection(input);
     console.log(`user input number set: ${input}`);
 
-    let guesses = 10;
-    //start the guess check loop
-    for (let i=0; i<1; i++ ) {
-        // let digitsGuessed = 0;
-        // let positionsGuessed = 0;
-        if (JSON.stringify(secretNum) == JSON.stringify(input)) {
-            alert('Congratulations, You Won!');
-            return;
-        }
-        //start the array of 4 comparison loop
-        for(let i=0; i<4; i++) {
-            if(secretNum[i] == input[i]) {
-                digitsGuessed ++;
-                positionsGuessed ++;
-            } else if(secretNum.includes(input[i])) {
-                digitsGuessed++;
-            } 
-        }
-        if (digitsGuessed == 0 && positionsGuessed == 0) {
-            alert('Your guess was incorrect');
-        } else {
-            alert(`You guessed ${digitsGuessed} of four numbers\n 
-            and ${positionsGuessed} of four positions correctly!`)
-        }
-            // Call addRow() with the table's ID
-        addRow("userLog", 1, input, digitsGuessed, positionsGuessed);
-
-        guesses--;
-        alert(`You have ${guesses} attempts remaining`);
-
+    if (JSON.stringify(secretNum) == JSON.stringify(input)) {
+        alert('Congratulations, You Won!');
+        return;
     }
+    //start the 4-number array comparison loop
+    for(let i=0; i<4; i++) {
+        if(secretNum[i] == input[i]) {
+            digitsGuessed ++;
+            positionsGuessed ++;
+        } else if(secretNum.includes(input[i])) {
+            digitsGuessed++;
+        } 
+    }
+    addRow("userLog", counter, input, digitsGuessed, positionsGuessed);
+    if (digitsGuessed == 0 && positionsGuessed == 0) {
+        alert('Your guess was incorrect');
+    } else {
+        alert(`You guessed ${digitsGuessed} of 4 numbers and
+            ${positionsGuessed} of 4 positions correctly!`)
+    }
+//     // Call addRow() with the table's ID
+    // addRow("userLog", 1, input, digitsGuessed, positionsGuessed);
+
+    counter ++;
+    alert(`You have ${11-counter} attempts remaining`);
+
     if (JSON.stringify(secretNum) == JSON.stringify(input)) {
         alert('Congratulations, You Won!');
     }
