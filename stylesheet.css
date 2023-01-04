@@ -27,9 +27,12 @@ input {
 button {
   margin-top: 1rem;
   margin-bottom: 4rem;
+  padding-left: 5%;
+  padding-right: 5%;
   background-color: #0072b1;
   color: #fff;
   font-weight: 600;
+  
 }
 
 table {
