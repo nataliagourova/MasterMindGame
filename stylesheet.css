@@ -5,8 +5,6 @@
   }
 body{
   padding: 2rem 2rem 2rem 2rem;
-
-
 }
 header {
   background-image: url("images/header-image.jpg");
@@ -26,19 +24,16 @@ input{
   margin-bottom: 1rem;
   margin-right: 1rem;
   }
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
-
 button {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -57,8 +52,6 @@ button {
 button:hover {
   cursor: pointer;
 }
-
-table,
 td {
     border: 1px solid #333;
     padding-left: 1rem;
@@ -77,12 +70,10 @@ tfoot {
   flex-wrap: nowrap;
 }
 /* The snackbar - position it at the bottom and in the middle of the screen */
-
 button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
-
 #snackbar {
   visibility: hidden; /* Hidden by default. Visible on click */
   min-width: 250px; /* Set a default minimum width */
@@ -97,7 +88,6 @@ button:disabled {
   left: 50%; /* Center the snackbar */
   bottom: 30px; /* 30px from the bottom */
 }
-
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
 #snackbar.show {
   visibility: visible; /* Show the snackbar */
@@ -106,23 +96,19 @@ button:disabled {
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
-
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
   from {bottom: 0; opacity: 0;}
   to {bottom: 30px; opacity: 1;}
 }
-
 @keyframes fadein {
   from {bottom: 0; opacity: 0;}
   to {bottom: 30px; opacity: 1;}
 }
-
 @-webkit-keyframes fadeout {
   from {bottom: 30px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
-
 @keyframes fadeout {
   from {bottom: 30px; opacity: 1;}
   to {bottom: 0; opacity: 0;}

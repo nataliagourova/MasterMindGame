@@ -20,7 +20,7 @@ fetch('https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=p
 });
 console.dir(`starter number set: ${JSON.stringify(secretNum)}`);
 
-//provides button toggle functionality
+//supports toggle button unctionality
 function toggle(elementId) {
     const element = document.getElementById(elementId);
     if (element.style.display === "none") {
@@ -29,6 +29,12 @@ function toggle(elementId) {
       element.style.display = "none";
     }
   }
+
+//supports restart button functionality
+function restart() {
+    document.location.reload();
+    return;
+}
 
 //adds a row to User Input Log table
 function addRow(tableID, rowIndex, userInput, digitsGuessed, positionsGuessed) {
