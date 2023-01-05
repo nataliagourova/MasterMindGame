@@ -60,7 +60,7 @@ function checkAnswers(){
     let button = document.getElementById("submit");
     if (counter == 10) {
         button.disabled = true;
-        alert("Last Try!")
+        // alert("Last Try!");
     }
     console.log(`starter user input array: ${input}`);
 
@@ -83,17 +83,17 @@ function checkAnswers(){
         } 
     }
     addRow("userLog", counter, input, digitsGuessed, positionsGuessed);
-    if (digitsGuessed == 0 && positionsGuessed == 0) {
-        alert('Your guess was incorrect');
-    } else {
-        alert(`You guessed ${digitsGuessed} of 4 numbers and
-            ${positionsGuessed} of 4 positions correctly!`)
-    }
+    // if (digitsGuessed == 0 && positionsGuessed == 0) {
+    //     alert('Your guess was incorrect');
+    // } else {
+    //     alert(`You guessed ${digitsGuessed} of 4 numbers and
+    //         ${positionsGuessed} of 4 positions correctly!`)
+    // }
 //     // Call addRow() with the table's ID
     // addRow("userLog", 1, input, digitsGuessed, positionsGuessed);
 
     counter ++;
-    alert(`You have ${11-counter} attempts remaining`);
+    // alert(`You have ${11-counter} attempts remaining`);
 
     if (JSON.stringify(secretNum) == JSON.stringify(input)) {
         alert('Congratulations, You Won!');
