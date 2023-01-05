@@ -93,6 +93,7 @@ function checkAnswers(){
     console.log(`user input number set: ${input}`);
 
     if (JSON.stringify(secretNum) == JSON.stringify(input)) {
+        document.getElementById('ta-da').play();
         alert('Congratulations, You Won!');
         return;
     }
@@ -118,6 +119,7 @@ function checkAnswers(){
     // alert(`You have ${11-counter} attempts remaining`);
 
     if (JSON.stringify(secretNum) == JSON.stringify(input)) {
+        document.getElementById('ta-da').play();
         alert('Congratulations, You Won!');
     }
 
