@@ -1,11 +1,8 @@
 //generate 2D array to store guesses and results
 let guessNum = Array.from(Array(10), () => new Array (3));
 console.log(guessNum);
-//input got moved from inside the checkAnswers() function - move back after 2d array is functional
+//initiate array for user input
 let input = new Array (4);  
-// //results for single attempt moved from inside selection() function - move back after 2d array is functional
-// let digitsGuessed = 0;
-// let positionsGuessed = 0;
 //initiate array to hold the winning number set
 let secretNum = new Array (4);
 
@@ -49,6 +46,7 @@ function addRow(tableID, rowIndex, userInput, digitsGuessed, positionsGuessed) {
     let cellTwo =newRow.insertCell(1).appendChild(document.createTextNode(userInput.toString()))
     let cellThree = newRow.insertCell(2).appendChild(document.createTextNode(digitsGuessed));
     let cellFour = newRow.insertCell(3).appendChild(document.createTextNode(positionsGuessed)); 
+    document.getElementById("counter-display").innerHTML = `${10-counter} attempts left`;
 }
 
 //collects user input as part of one attempt
@@ -98,6 +96,9 @@ function checkAnswers(){
             digitsGuessed++;
         } 
     }
+    guessNum[counter-1].push(input.toString(), digitsGuessed, positionsGuessed);
+    console.log(guessNum);
+
     addRow("userLog", counter, input, digitsGuessed, positionsGuessed);
     // if (digitsGuessed == 0 && positionsGuessed == 0) {
     //     alert('Your guess was incorrect');
