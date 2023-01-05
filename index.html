@@ -19,12 +19,11 @@
           - The player guessed a correct number and its correct location <br>
           - The player’s guess was incorrect
       </p>
-      <p>Numbers can be repeated</p>
+
     </div>
-    <p>When done, refresh to start over</p>
-    <h4>Please enter four numbers from 0 to 7 in the order you think they appear</h4>
+    <h4>Enter four numbers from 0 to 7 in the order you think they appear</h4>
+    <p>Numbers can be repeated</p>
     <form>
-        <label for="1num">Input Your Numbers</label><br>
         <div class="flex-container">
           <input type = "number" min = "0" max = "7" id = "1num" name ="'1num" size="50"><br>
 
@@ -34,10 +33,12 @@
 
           <input type = "number" min = "0" max = "7" id = "4num" name ="'4num"><br> 
     </form>
-    <button  onclick= "checkAnswers()" type="button" id = "submit" name = "button">SUBMIT</button>
+    <button  onclick= "checkAnswers()" type="button" id = "submit" name = "button">PLAY</button>
         </div>
     <h5 id="counter-display"></h5>
-    <button id="toggler" onclick="toggle(`userLog`)">Input Log</button>
+    <div id="results">
+      <button id="toggler" onclick="toggle(`userLog`)">Attempts Log</button>
+    </div>
     <table id="userLog">
       <tbody>
           <tr>

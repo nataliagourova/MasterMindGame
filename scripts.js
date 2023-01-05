@@ -20,10 +20,10 @@ console.dir(`starter number set: ${JSON.stringify(secretNum)}`);
 //supports toggle button unctionality
 function toggle(elementId) {
     const element = document.getElementById(elementId);
-    if (element.style.display === "none") {
-      element.style.display = "block";
-    } else {
+    if (element.style.display === "block") {
       element.style.display = "none";
+    } else {
+      element.style.display = "block";
     }
   }
 
@@ -67,6 +67,15 @@ function selection (input){
 
 let counter = 1;
 
+function customAlert(msg,duration) {
+    const alertLocation = document.querySelector('#results');
+    let styler = document.createElement("div");
+    styler.setAttribute("style","border: solid 1px Red;width:18rem;height:auto;text-align:center;background-color:#CACCCE");
+    styler.innerHTML = "<h5>"+msg+"</h5>";
+    setTimeout(function(){styler.parentNode.removeChild(styler);},duration);
+    alertLocation.appendChild(styler);
+}
+
 //checks user input against the API generated number set
 function checkAnswers(){
     // let input = new Array (4);  
@@ -100,15 +109,11 @@ function checkAnswers(){
     console.log(guessNum);
 
     addRow("userLog", counter, input, digitsGuessed, positionsGuessed);
-    // if (digitsGuessed == 0 && positionsGuessed == 0) {
-    //     alert('Your guess was incorrect');
-    // } else {
-    //     alert(`You guessed ${digitsGuessed} of 4 numbers and
-    //         ${positionsGuessed} of 4 positions correctly!`)
-    // }
-//     // Call addRow() with the table's ID
-    // addRow("userLog", 1, input, digitsGuessed, positionsGuessed);
-
+    if (digitsGuessed == 0 && positionsGuessed == 0) {
+        customAlert('Your guess was incorrect', 2000);
+    } else {
+        customAlert(`You guessed ${digitsGuessed} of 4 numbers and ${positionsGuessed} of 4 positions correctly!`, 2000);
+    }
     counter ++;
     // alert(`You have ${11-counter} attempts remaining`);
 

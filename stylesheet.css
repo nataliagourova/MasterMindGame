@@ -53,7 +53,7 @@ button:hover {
   cursor: pointer;
 }
 h5 {
-  color:saddlebrown;
+  color: #dd5143;
 }
 td {
     border: 1px solid #333;
@@ -77,6 +77,13 @@ button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
+#userLog {
+  display: none;
+}
+#target{
+  display:none;
+}
+
 #snackbar {
   visibility: hidden; /* Hidden by default. Visible on click */
   min-width: 250px; /* Set a default minimum width */
