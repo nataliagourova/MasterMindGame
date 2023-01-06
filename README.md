@@ -17,15 +17,17 @@ The following is supported:
 * Obtain a randomly generated winning set of four numbers from the API via a promise
 * Check user input against the winning combination using a for-loop
 * Store results in two variables for numbers and posiitons correctly guessed
-* Display results via a custom alert message that disappears after 2 seconds, as well as user input log that can be hidden for higher difficulty
+* Display results via a custom alert message which disappears after 2 seconds
+* Display results via a user input log that can be hidden for higher difficulty
 * Display number of attempts left after first attempt is submitted
 * Play a sound and display a standard alert in the event user enters a winning combination
-* Disable the PLAY button after 10 attempts
+* Disable the PLAY button after 10 attempts, make opaque color transparent when disabled
+* Make the cursor appear as a "hand" when hovering over buttons
 * Display and hide game rules and user input log
 * Restart the game at any time
 * Store session results in a 2D array *so that the results can be posted to an external server or shared on media platforms* (*future functionality*)
 * Console displays the winning number set, so that all of the game's functionality can be tested as needed
 * Console logs and alerts used for development purposes are intentionally commented out / not deleted
 
-Effects include a royalty-free jpeg & mp3 files and LinkedIn color scheme.
+Effects include a royalty-free jpeg & mp3 files and LinkedIn color palette.
 
