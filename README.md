@@ -14,7 +14,7 @@ Js code contains several globally scoped variables and functions.
 The following is supported:
 * Collect user input and store it in array
 * Display hints on accepted values through native browser functionality and type/min/max input element attributes
-* Obtain a randomly generated winning set of four numbers from the API
+* Obtain a randomly generated winning set of four numbers from the API via a promise
 * Check user input against the winning combination using a for-loop
 * Store results in two variables for numbers and posiitons correctly guessed
 * Display results via a custom alert message that disappears after 2 seconds, as well as user input log that can be hidden for higher difficulty
