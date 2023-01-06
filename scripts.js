@@ -16,22 +16,6 @@ fetch('https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=p
     console.log(`secret set to be guessed/loaded: ${secretNum}`);
 });
 
-//supports toggle button functionality
-function toggle(elementId) {
-    const element = document.getElementById(elementId);
-    if (element.style.display === "block") {
-      element.style.display = "none";
-    } else {
-      element.style.display = "block";
-    }
-  }
-
-//supports restart button functionality
-function restart() {
-    document.location.reload();
-    return;
-}
-
 //collects user input as part of one attempt
 function selection (input){
     input[0] = document.getElementById("1num").value;
@@ -69,6 +53,26 @@ function customAlert(msg,duration) {
     alertLocation.appendChild(styler);
 }
 
+//supports toggle button functionality
+function toggle(elementId) {
+    const element = document.getElementById(elementId);
+    if (element.style.display === "block") {
+      element.style.display = "none";
+    } else {
+      element.style.display = "block";
+    }
+  }
+
+//adds restart button even listener
+document.getElementById("restart").addEventListener("click", restart);  
+//supports restart button functionality
+function restart() {
+    document.location.reload();
+    return;
+}
+
+//adds submit button event listener
+document.getElementById("submit").addEventListener("click", checkAnswers);
 //checks user input against the API generated number set and fires off utility functions as needed, main onClick function for PLAY button
 function checkAnswers(){
     // let input = new Array (4);  
