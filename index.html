@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="stylesheet.css">
     <title>MasterMind Game</title>
+    <script src="https://kit.fontawesome.com/d2e443442a.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header></header>
-    <button id="toggler" onclick="toggle(`target`)">Rules</button>
+    <button id="toggler" onclick="toggle(`rules`)">Rules</button>
     <button onclick = "restart()" id = "restart" name = "restart">Restart</button>
-    <div id="target">
+    <div id="rules">
       <p>At the start of the game the computer will randomly select a pattern of four different
           numbers from a total of 8 different numbers.</p>
       <p>A player will have 10 attempts to guess the number combinations</p>
@@ -19,22 +20,18 @@
           - The player guessed a correct number and its correct location <br>
           - The player’s guess was incorrect
       </p>
-
     </div>
     <h4>Enter four numbers from 0 to 7 in the order you think they appear</h4>
     <p>Numbers can be repeated</p>
     <form>
-        <div class="flex-container">
-          <input type = "number" min = "0" max = "7" id = "1num" name ="'1num" size="50"><br>
-
-          <input type = "number" min = "0" max = "7" id = "2num" name ="'2num"><br>        
-
-          <input type = "number" min = "0" max = "7" id = "3num" name ="'3num"><br>  
-
-          <input type = "number" min = "0" max = "7" id = "4num" name ="'4num"><br> 
+      <div class="flex-container">
+        <input type="number" id="1num" name="'1num" value="1" min="0" max="7" pattern="[0-7]{1}" required /><br>
+        <input type="number" id="2num" name="2num" value="1" min="0" max="7" required /><br>        
+        <input type="number" id="3num" name="3num" value="1" min="0" max="7" required /><br>  
+        <input type="number" id="4num" name="4num" value="1" min="0" max="7" required /><br> 
+        <button  onclick= "checkAnswers()" type="button" id = "submit" name = "button">PLAY</button>
+      </div>
     </form>
-    <button  onclick= "checkAnswers()" type="button" id = "submit" name = "button">PLAY</button>
-        </div>
     <h5 id="counter-display"></h5>
     <div id="results">
       <button id="toggler" onclick="toggle(`userLog`)">Attempts Log</button>
@@ -51,7 +48,15 @@
     </table>
     <audio source src="./taDa.mp3" type="audio/mpeg" id="ta-da"></audio>
     <!-- The script tag is how I link my JavaScript file. -->
-    <script src="./scripts.js" charset="utf-8" defer>
-    </script>
+    <script src="./scripts.js" charset="utf-8" defer></script>
+    <footer>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparse.com">
+        <i class="fab fa-facebook"></i>
+      </a> &nbsp &nbsp
+      <a href="http://twitter.com/share?url=https://nataliagourova.github.io/MasterMindGame/" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <p>Created by nataliagourova in 2023.</p>
+    </footer>
   </body>
 </html>
