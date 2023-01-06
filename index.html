@@ -6,57 +6,52 @@
     <title>MasterMind Game</title>
   </head>
   <body>
-    <header>Welcome!</header>
-    <h4>Game Rules</h4>
+    <header></header>
+    <button id="toggler" onclick="toggle(`target`)">Rules</button>
+    <button onclick = "restart()" id = "restart" name = "restart">Restart</button>
+    <div id="target">
+      <p>At the start of the game the computer will randomly select a pattern of four different
+          numbers from a total of 8 different numbers.</p>
+      <p>A player will have 10 attempts to guess the number combinations</p>
+      <p> At the end of each guess, computer will provide one of the following response as
+          feedback: <br>
+          - The player guessed a correct number <br>
+          - The player guessed a correct number and its correct location <br>
+          - The player’s guess was incorrect
+      </p>
 
-    <p>At the start of the game the computer will randomly select a pattern of four different
-        numbers from a total of 8 different numbers.</p>
-    <p>A player will have 10 attempts to guess the number combinations</p>
-    <p> At the end of each guess, computer will provide one of the following response as
-        feedback: <br>
-        - The player guessed a correct number <br>
-        - The player guessed a correct number and its correct location <br>
-        - The player’s guess was incorrect
-    </p>
-    <p>When done, refresh to start over</p>
-    <h5>Please enter four numbers from 0 to 7 in the order you think they appear</h5>
-
+    </div>
+    <h4>Enter four numbers from 0 to 7 in the order you think they appear</h4>
+    <p>Numbers can be repeated</p>
     <form>
-        <label for="1num">Your 1st Number</label><br>
-        <input type = "number" min = "0" max = "7" id = "1num" name ="'1num" size="50"><br>
-        <label for="2num">Your 2nd Number</label><br>
-        <input type = "number" min = "0" max = "7" id = "2num" name ="'2num"><br>        
-        <label for="3num">Your 3rd Number</label><br>
-        <input type = "number" min = "0" max = "7" id = "3num" name ="'3num"><br>  
-        <label for="4num">Your 4th Number</label><br>
-        <input type = "number" min = "0" max = "7" id = "4num" name ="'4num"><br> 
-    </form>
-    <button  onclick= "checkAnswers()" type="button" id = "submit" name = "button">SUBMIT</button>
+        <div class="flex-container">
+          <input type = "number" min = "0" max = "7" id = "1num" name ="'1num" size="50"><br>
 
+          <input type = "number" min = "0" max = "7" id = "2num" name ="'2num"><br>        
+
+          <input type = "number" min = "0" max = "7" id = "3num" name ="'3num"><br>  
+
+          <input type = "number" min = "0" max = "7" id = "4num" name ="'4num"><br> 
+    </form>
+    <button  onclick= "checkAnswers()" type="button" id = "submit" name = "button">PLAY</button>
+        </div>
+    <h5 id="counter-display"></h5>
+    <div id="results">
+      <button id="toggler" onclick="toggle(`userLog`)">Attempts Log</button>
+    </div>
     <table id="userLog">
-      <thead>
-          <tr>
-              <th colspan="2">Your Guesses Log</th>
-          </tr>
-      </thead>
       <tbody>
           <tr>
               <td>Attempt</td>
-              <td>Your Guessed Numbers</td>
+              <td>Your Guesses</td>
               <td>Correct Numbers</td>
               <td>Correct Positions</td>
           </tr>
       </tbody>
-  </table>
-    
-    <!-- <button type="button" name="button">SUBMIT</button> -->
+    </table>
+    <audio source src="./taDa.mp3" type="audio/mpeg" id="ta-da"></audio>
     <!-- The script tag is how I link my JavaScript file. -->
     <script src="./scripts.js" charset="utf-8" defer>
-    // <!-- <script> -->
-        // const userInput1 = document.getElementById('1num').value;
-        // console.log(`1st num by user is ${userInput1}`);
-
     </script>
-    <!-- The source file is in the same folder as index file -->
   </body>
 </html>

@@ -1,11 +1,8 @@
 //generate 2D array to store guesses and results
 let guessNum = Array.from(Array(10), () => new Array (3));
 console.log(guessNum);
-//input got moved from inside the checkAnswers() function - move back after 2d array is functional
+//initiate array for user input
 let input = new Array (4);  
-// //results for single attempt moved from inside selection() function - move back after 2d array is functional
-// let digitsGuessed = 0;
-// let positionsGuessed = 0;
 //initiate array to hold the winning number set
 let secretNum = new Array (4);
 
@@ -20,6 +17,22 @@ fetch('https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=p
 });
 console.dir(`starter number set: ${JSON.stringify(secretNum)}`);
 
+//supports toggle button unctionality
+function toggle(elementId) {
+    const element = document.getElementById(elementId);
+    if (element.style.display === "block") {
+      element.style.display = "none";
+    } else {
+      element.style.display = "block";
+    }
+  }
+
+//supports restart button functionality
+function restart() {
+    document.location.reload();
+    return;
+}
+
 //adds a row to User Input Log table
 function addRow(tableID, rowIndex, userInput, digitsGuessed, positionsGuessed) {
     // Get a reference to the table
@@ -33,6 +46,7 @@ function addRow(tableID, rowIndex, userInput, digitsGuessed, positionsGuessed) {
     let cellTwo =newRow.insertCell(1).appendChild(document.createTextNode(userInput.toString()))
     let cellThree = newRow.insertCell(2).appendChild(document.createTextNode(digitsGuessed));
     let cellFour = newRow.insertCell(3).appendChild(document.createTextNode(positionsGuessed)); 
+    document.getElementById("counter-display").innerHTML = `${10-counter} attempts left`;
 }
 
 //collects user input as part of one attempt
@@ -53,6 +67,15 @@ function selection (input){
 
 let counter = 1;
 
+function customAlert(msg,duration) {
+    const alertLocation = document.querySelector('#results');
+    let styler = document.createElement("div");
+    styler.setAttribute("style","border: solid 1px Red;width:18rem;height:auto;text-align:center;background-color:#CACCCE");
+    styler.innerHTML = "<h5>"+msg+"</h5>";
+    setTimeout(function(){styler.parentNode.removeChild(styler);},duration);
+    alertLocation.appendChild(styler);
+}
+
 //checks user input against the API generated number set
 function checkAnswers(){
     // let input = new Array (4);  
@@ -60,7 +83,7 @@ function checkAnswers(){
     let button = document.getElementById("submit");
     if (counter == 10) {
         button.disabled = true;
-        alert("Last Try!")
+        // alert("Last Try!");
     }
     console.log(`starter user input array: ${input}`);
 
@@ -70,6 +93,7 @@ function checkAnswers(){
     console.log(`user input number set: ${input}`);
 
     if (JSON.stringify(secretNum) == JSON.stringify(input)) {
+        document.getElementById('ta-da').play();
         alert('Congratulations, You Won!');
         return;
     }
@@ -82,20 +106,20 @@ function checkAnswers(){
             digitsGuessed++;
         } 
     }
+    guessNum[counter-1].push(input.toString(), digitsGuessed, positionsGuessed);
+    console.log(guessNum);
+
     addRow("userLog", counter, input, digitsGuessed, positionsGuessed);
     if (digitsGuessed == 0 && positionsGuessed == 0) {
-        alert('Your guess was incorrect');
+        customAlert('Your guess was incorrect', 2000);
     } else {
-        alert(`You guessed ${digitsGuessed} of 4 numbers and
-            ${positionsGuessed} of 4 positions correctly!`)
+        customAlert(`You guessed ${digitsGuessed} of 4 numbers and ${positionsGuessed} of 4 positions correctly!`, 2000);
     }
-//     // Call addRow() with the table's ID
-    // addRow("userLog", 1, input, digitsGuessed, positionsGuessed);
-
     counter ++;
-    alert(`You have ${11-counter} attempts remaining`);
+    // alert(`You have ${11-counter} attempts remaining`);
 
     if (JSON.stringify(secretNum) == JSON.stringify(input)) {
+        document.getElementById('ta-da').play();
         alert('Congratulations, You Won!');
     }
 
