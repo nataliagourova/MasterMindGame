@@ -1,24 +1,20 @@
-//generate 2D array to store guesses and results
+//generates 2D array to store guesses and results
 let guessNum = Array.from(Array(10), () => new Array (3));
-// console.log(guessNum);
-//initiate array for user input
+//initiates array for user input
 let input = new Array (4);  
-//initiate array to hold the winning number set
+//initiates array to hold the winning number set
 let secretNum = new Array (4);
 //initiate attempts counter
 let counter = 1;
 
-//obtain the winning number set from API
+//obtains the winning number set from API
 fetch('https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new')
 .then ((response) => response.text())
 .then((data) => {
     secretNum  = data.trim().split('\n');
     //display the winning set in console 
-    console.log(`set to guess/loaded: ${secretNum}`);
-    // console.log(`value type: ${typeof data}`);
-    // console.log(`data type: ${typeof secretNum}`); 
+    console.log(`secret set to be guessed/loaded: ${secretNum}`);
 });
-// console.dir(`starter number set: ${JSON.stringify(secretNum)}`);
 
 //supports toggle button functionality
 function toggle(elementId) {
@@ -51,13 +47,11 @@ function selection (input){
 
 //adds a row to User Input Log table
 function addRow(tableID, rowIndex, userInput, digitsGuessed, positionsGuessed) {
-    // Get a reference to the table
+    // gets a reference to the table
     let tableRef = document.getElementById(tableID);
-  
-    // Insert a row at the end of the table
-    let newRow = tableRef.insertRow(-1);
-  
-    // Insert a cell in the row at index 0 and append a text node to cell
+    // inserts a row at the end of the table
+    let newRow = tableRef.insertRow(-1); 
+    // inserts a cell in the row at index 0 and appends a text node to cell
     let cellOne = newRow.insertCell(0).appendChild(document.createTextNode(rowIndex));
     let cellTwo =newRow.insertCell(1).appendChild(document.createTextNode(userInput.toString()))
     let cellThree = newRow.insertCell(2).appendChild(document.createTextNode(digitsGuessed));
@@ -65,6 +59,7 @@ function addRow(tableID, rowIndex, userInput, digitsGuessed, positionsGuessed) {
     document.getElementById("counter-display").innerHTML = `${10-counter} attempts left`;
 }
 
+//creates a custom alert with results of user's guess attempt, with a timeout
 function customAlert(msg,duration) {
     const alertLocation = document.querySelector('#results');
     let styler = document.createElement("div");
@@ -74,7 +69,7 @@ function customAlert(msg,duration) {
     alertLocation.appendChild(styler);
 }
 
-//checks user input against the API generated number set and fires off utility functions as needed
+//checks user input against the API generated number set and fires off utility functions as needed, main onClick function for PLAY button
 function checkAnswers(){
     // let input = new Array (4);  
     //start the guess check loop
@@ -84,38 +79,53 @@ function checkAnswers(){
         // alert("Last Try!");
     }
     // console.log(`starter user input array: ${input}`);
-
+    //initiates counters for numbers and positions guessed by user in one attempt    
     let digitsGuessed = 0;
     let positionsGuessed = 0;
     selection(input);
     // console.log(`user input number set: ${input}`);
-
+    //checks for a complete winning combination
     if (JSON.stringify(secretNum) == JSON.stringify(input)) {
         document.getElementById('ta-da').play();
         alert('Congratulations, You Won!');
         return;
     }
-    //start the 4-number array comparison loop
+    //starts the 4-number array comparison loop to count positions guessed in one attempt
     for(let i=0; i<4; i++) {
         if(secretNum[i] == input[i]) {
-            digitsGuessed ++;
             positionsGuessed ++;
-        } else if(secretNum.includes(input[i])) {
-            digitsGuessed++;
         } 
-    }
+    } 
+    //to calculate numbers guessed in one attempt, creates two new arrays with input & secret numbers and their counts
+    const inputNumCounts = new Array;
+    input.forEach(num => {
+        inputNumCounts[num]=(inputNumCounts[num] || 0) +1;
+    });
+    const secretNumCounts = new Array;
+    secretNum.forEach(num => {
+        secretNumCounts[num] = (secretNumCounts[num] || 0)+1;
+    });
+    //traverses new sparse array with input numbers and their counts
+    //when input number (aka index) exists in both input & secret arrays, compare values at that index, and add min to the number of digits correctly guessed
+    //otherwise, increment the number of digits correctly guessed (digitsGuessed) by 0
+    inputNumCounts.forEach((count, num) => {
+        // console.log(count, num);
+        digitsGuessed += Math.min(inputNumCounts[num], secretNumCounts[num]) || 0
+    });
+    //populates 2D array with the results of each attempt, 2D array to be used in future development in results reporting
     guessNum[counter-1].push(input.toString(), digitsGuessed, positionsGuessed);
     // console.log(guessNum);
-
-    addRow("userLog", counter, input, digitsGuessed, positionsGuessed);
+    //calls add row function to populate the user input log with results
+    addRow("userLog", counter, input, digitsGuessed, positionsGuessed);  
+    //sets off custom alerts for non-winning attempts
     if (digitsGuessed == 0 && positionsGuessed == 0) {
         customAlert('Your guess was incorrect', 2000);
     } else {
         customAlert(`You guessed ${digitsGuessed} of 4 numbers and ${positionsGuessed} of 4 positions correctly!`, 2000);
     }
+    //increments attempts counter
     counter ++;
-    // alert(`You have ${11-counter} attempts remaining`);
-
+    //sets off a standardized alert and an audio for winning attempts
     if (JSON.stringify(secretNum) == JSON.stringify(input)) {
         document.getElementById('ta-da').play();
         alert('Congratulations, You Won!');
