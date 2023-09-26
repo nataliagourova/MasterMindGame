@@ -1,7 +1,7 @@
 ### Master Mind Game
 
 This projecy id a mastermind game, which can be played by a user "against" the computer.
-The game has been deployed to GitHub pages. See [played in a browser](https://nataliagourova.github.io/MasterMindGame/). Firefox is recommended as it fully supports the intended featured.
+The game has been deployed to GitHub pages. [Play the game here](https://nataliagourova.github.io/MasterMindGame/). Firefox is recommended as it fully supports the intended featured.
 This is a game where a player tries to guess a number combination in 10 attempts. At the end of each attempt to guess the 4 number combinations in a particular order, the computer provides feedback whether the player had guessed a number correctly, or/and a number position correctly. A player must guess the right number combinations within 10 attempts to win the game by process of elimination.
 In the event the number sequence is guessed, the game alerts the winner, plays a sound and stops.
 
